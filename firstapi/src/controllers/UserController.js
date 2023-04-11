@@ -22,5 +22,24 @@ module.exports = {
     if (!user) return response.send(400, { error: "user not found" })
     response.send(200, user);
 
+  },
+
+  createUser(request, response) {
+    let body = '';
+    request.on('data', chunk => {
+      body += chunk;
+    })
+
+    request.on('end', () => {
+      body = JSON.parse(body);
+
+      const lastUserId = users[users.length - 1].id;
+      const newUser = {
+        id: lastUserId + 1,
+        name: body.name,
+      }
+      users.push(newUser);
+      response.send(201, { status: 201, newUser });
+    });
   }
 }
