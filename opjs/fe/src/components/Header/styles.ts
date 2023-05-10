@@ -5,7 +5,7 @@ export const Container = styled.header`
   display:flex;
   justify-content: center;
   height: 198px;
-  align-items: center
+  align-items: center;
 `;
 
 export const Content = styled.div`
